@@ -12,8 +12,10 @@ int main(int argc, char **argv)
 	char *line_buf = NULL;
 	size_t line_buf_size = 0;
 	int line_size;
-	stack_t *head;
-	char *command;
+	/*	stack_t *head; */
+	char *cmd_toks;
+	char *command[25];
+	int i = 0;
 
 	/* First Check, only run program + file path */
 	if (argc != 2)
@@ -40,9 +42,19 @@ int main(int argc, char **argv)
 		line_count++;
 
 		/* Show the line details */
-		command = strtok(line_buf, " ");
-		printf("%s\n", command);
-
+		cmd_toks = strtok(line_buf, " ");
+		while (cmd_toks != NULL)
+		  {
+		    if (strcmp(cmd_toks, " ") != 0)
+		      {
+			command[i] = cmd_toks;
+			cmd_toks = strtok(NULL, " ");
+			i++;
+		      }
+		  }
+		i = 0;
+		printf("%s\n", command[0]);
+		printf("%s\n", command[1]);
 		/* Get the next line */
 	    line_size = getline(&line_buf, &line_buf_size, fp);
 	}
