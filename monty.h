@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+extern int line_count;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
