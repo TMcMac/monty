@@ -5,7 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern int line_count;
+/**
+ * struct globalinfo_s - a structure of info that will be accessable globally
+ * @fp: a file pointer to our open stream
+ * @num: for a push operation the num to be pushed
+ * @head: the top of our stack
+ */
+typedef struct globalinfo_s
+{
+	stack_t *head;
+	FILE *fp;
+	int num;
+} glbnfo;
+
+extern glbnfo *info;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -18,9 +31,9 @@ extern int line_count;
  */
 typedef struct stack_s
 {
-  int n;
-  struct stack_s *prev;
-  struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -33,8 +46,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-  char *opcode;
-  void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 #endif
