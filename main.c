@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <ctype.h>
 
 int line_count = 0;
 /**
