@@ -34,12 +34,11 @@ int main(int argc, char **argv)
 	if (info == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
-		close(fp);
+		fclose(fp);
 		exit(EXIT_FAILURE);
 	}
-	info->fp = fp;
-	info->buffer = line_buf;
-	info->stack = stack;
+	info->fp = &fp;
+	info->buffer = &line_buf;
 	line_size = getline(&line_buf, &line_buf_size, fp);
 	while (line_size >= 0)
 	{
@@ -51,13 +50,12 @@ int main(int argc, char **argv)
 		while (cmd_toks != NULL)
 		{
 			command[i] = cmd_toks;
-			printf("Line %d: %s\n",line_count, command[i]);
 			cmd_toks = strtok(NULL, delimit);
 			i++;
 		}
-		cmd_comp(command, line_count);
-	    line_size = getline(&line_buf, &line_buf_size, fp);
-	    i = 0;
+		cmd_comp(command, &stack, line_count);
+	        line_size = getline(&line_buf, &line_buf_size, fp);
+		i = 0;
 	}
 	fclose(fp);
 	return (0);

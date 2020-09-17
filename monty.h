@@ -42,20 +42,20 @@ typedef struct instruction_s
  * struct globalinfo_s - a structure of info that will be accessable globally
  * @fp: a file pointer to our open stream
  * @num: for a push operation the num to be pushed
+ * @buffer: the line buffer from get line
  */
 typedef struct globalinfo_s
 {
-  stack_t **stack;
-  FILE *fp;
-  int *num;
-  char *buffer;
+  FILE **fp;
+  char *num;
+  char **buffer;
 } glbnfo;
 
 extern glbnfo *info;
 
 /* Error Checks and Utils*/
 void file_check(FILE *fp, const char *filename);
-void cmd_comp(char *cmd[], unsigned int line_num);
+void cmd_comp(char *cmd[], stack_t **stack,  unsigned int line_num);
 void clean_up(FILE **fp, stack_t **stack, char **buffer);
 /* These are all our functions in basic_funcs*/
 void _push(stack_t **stack, unsigned int line_number);

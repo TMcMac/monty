@@ -7,7 +7,7 @@
  * Return: Nothing
  */
 
-void cmd_comp(char *cmd[], unsigned int line_num)
+void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 {
 	int i = 0;
 	instruction_t opcodes[] = {
@@ -26,6 +26,6 @@ void cmd_comp(char *cmd[], unsigned int line_num)
     if (opcodes[i].opcode == NULL)
     {
 	    fprintf(stderr, "L%u: unknown instruction %s\n", line_num, cmd[0]);
-	    clean_up(info->fp, info->stack, info->buffer);
+	    clean_up(info->fp, stack, info->buffer);
     }
 }
