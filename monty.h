@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+<<<<<<< HEAD
+=======
+#include <ctype.h>
+>>>>>>> 5c7eadf038ad95cb2b16e29d984622f26e2e34ec
 #include <unistd.h>
 
 /**
@@ -23,6 +27,20 @@ typedef struct stack_s
 } stack_t;
 
 /**
+ * struct globalinfo_s - a structure of info that will be accessable globally
+ * @fp: a file pointer to our open stream
+ * @num: for a push operation the num to be pushed
+ * @head: the top of our stack
+ */
+typedef struct globalinfo_s
+{
+	stack_t *head;
+	FILE *fp;
+	int num;
+} glbnfo;
+extern glbnfo *info;
+
+/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
@@ -36,6 +54,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+<<<<<<< HEAD
 /**
  * struct globalinfo_s - a structure of info that will be accessable globally
  * @fp: a file pointer to our open stream
@@ -49,5 +68,22 @@ typedef struct globalinfo_s
 } glbnfo;
 
 extern glbnfo *info;
+=======
+
+/* These are all our functions in basic_funcs*/
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
+/* These are the moving programs in moves */
+void _swap(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+/* These are the math functions in maths  */
+void _add(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+void _mod(stack_t **stack, unsigned int line_number);
+>>>>>>> 5c7eadf038ad95cb2b16e29d984622f26e2e34ec
 
 #endif
