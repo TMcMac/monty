@@ -40,20 +40,26 @@ int main(int argc, char **argv)
 	info->fp = &fp;
 	info->buffer = &line_buf;
 	line_size = getline(&line_buf, &line_buf_size, fp);
+	printf("Made it past getline 1\n");
 	while (line_size >= 0)
 	{
 		/* Incremeant our line count */
 		line_count += 1;
 		/* First we tokenize our line from getline */
 		cmd_toks = strtok(line_buf, delimit);
+		printf("Made it into while loop for getline and past strtok1\n");
 		/* Next we will take anything not a space and put it in an array of tokens*/
 		while (cmd_toks != NULL)
 		{
 			command[i] = cmd_toks;
+			printf("In the inner while loop for cmd_toks\n");
 			cmd_toks = strtok(NULL, delimit);
 			i++;
 		}
+		printf("Past the cmd_toks loop, sending to cmd_comp\n");
+		printf("Arg0: %s$\nArg1: %s$\n", command[0], command[1]);
 		cmd_comp(command, &stack, line_count);
+		printf("Returned from cmd comp next line\n");
 	    line_size = getline(&line_buf, &line_buf_size, fp);
 	    i = 0;
 	}
