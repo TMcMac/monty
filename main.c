@@ -57,6 +57,6 @@ int main(int argc, char **argv)
 	    line_size = getline(&line_buf, &line_buf_size, fp);
 	    i = 0;
 	}
-	clean_up(info->fp, stack, info->buffer);
+	clean_up(info->fp, &stack, info->buffer);
 	return (0);
 }
