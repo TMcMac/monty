@@ -7,7 +7,7 @@
  * Return: Nothing
  */
 
-void cmd_comp(char *cmd, int line_num)
+void cmd_comp(char *cmd[], unsigned int line_num)
 {
 	int i = 0;
 	instruction_t opcodes[] = {
@@ -18,10 +18,14 @@ void cmd_comp(char *cmd, int line_num)
 		{"swap", _swap}, */
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
-		if (strcmp(opcodes[i].opcode, arg) == 0)
+		if (strcmp(opcodes[i].opcode, cmd[0]) == 0)
 		{
-			
+			printf("%s matched an opcode!!!", cmd[0]);
 		}
 	}
-	 *fprintf(stderr, "L%u: unknown instruction %s\n", line_num, cmd);
+    if (opcodes[i].opcode == NULL)
+    {
+	    fprintf(stderr, "L%u: unknown instruction %s\n", line_num, cmd[0]);
+        clean_up(info->fp, info->stack, info->buffer);
+    }
 }

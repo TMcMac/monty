@@ -1,7 +1,7 @@
 #include "monty.h"
 #include <ctype.h>
 
-glbnfo *info;
+glbnfo *info = NULL;
 
 /**
  *
@@ -10,6 +10,7 @@ glbnfo *info;
  */
 int main(int argc, char **argv)
 {
+	stack_t *stack = NULL;
 	char *line_buf = NULL;
 	size_t line_buf_size = 0;
 	int line_size;
@@ -21,20 +22,23 @@ int main(int argc, char **argv)
 	const char *filename;
 	FILE *fp;
 
-	/* First Check, only run program + file path */
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
 	filename = argv[1];
-	/* Second check, open the file*/
-	fp = fopen(filename, "r");
-	if (fp == NULL || access(filename, R_OK) == -1)
+	fp = file_check(filename);
+	info = malloc(sizeof(glbnfo));
+	if (info == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: malloc failed");
+		close(fp);
 		return (EXIT_FAILURE);
 	}
+	info->fp = fp;
+	info->buffer = line_buf;
+	info->stack = stack;
 	line_size = getline(&line_buf, &line_buf_size, fp);
 	while (line_size >= 0)
 	{
@@ -50,10 +54,7 @@ int main(int argc, char **argv)
 			cmd_toks = strtok(NULL, delimit);
 			i++;
 		}
-        /*  This is where we will need to call a function pointer struct and see what operation we need to do
-			I think we'll always be sending a head pointer and line number, and getting back the head pointer
-			cmd_comp(command[0], line_count);
-			Get the next line */
+		cmd_comp(command, line_count);
 	    line_size = getline(&line_buf, &line_buf_size, fp);
 	    i = 0;
 	}

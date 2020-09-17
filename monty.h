@@ -45,13 +45,18 @@ typedef struct instruction_s
  */
 typedef struct globalinfo_s
 {
-  stack_t *stack;
-  FILE *fp;
-  int num;
+  stack_t **stack;
+  FILE **fp;
+  int **num;
+  char **buffer;
 } glbnfo;
 
 extern glbnfo *info;
 
+/* Error Checks and Utils*/
+FILE *file_check(const char *filename);
+void cmd_comp(char *cmd[], unsigned int line_num);
+void clean_up(FILE **fp, stack_t **stack, char **buffer);
 /* These are all our functions in basic_funcs*/
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
