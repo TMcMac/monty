@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 	info = malloc(sizeof(glbnfo));
 	if (info == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
-		fclose(fp);
+		fprintf(stderr, "Error: malloc failed\n");
+		close(fp);
 		exit(EXIT_FAILURE);
 	}
 	info->fp = &fp;
@@ -54,8 +54,8 @@ int main(int argc, char **argv)
 			i++;
 		}
 		cmd_comp(command, &stack, line_count);
-	        line_size = getline(&line_buf, &line_buf_size, fp);
-		i = 0;
+	    line_size = getline(&line_buf, &line_buf_size, fp);
+	    i = 0;
 	}
 	fclose(fp);
 	return (0);
