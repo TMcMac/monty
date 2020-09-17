@@ -46,9 +46,9 @@ typedef struct instruction_s
 typedef struct globalinfo_s
 {
   stack_t **stack;
-  FILE **fp;
-  int **num;
-  char **buffer;
+  FILE *fp;
+  int *num;
+  char *buffer;
 } glbnfo;
 
 extern glbnfo *info;

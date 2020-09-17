@@ -25,16 +25,17 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	filename = argv[1];
-	fp = file_check(filename);
+	fp = fopen(filename, "r");
+	
 	info = malloc(sizeof(glbnfo));
 	if (info == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
-		close(fp);
-		return (EXIT_FAILURE);
+		close(*fp);
+		exit(EXIT_FAILURE);
 	}
 	info->fp = fp;
 	info->buffer = line_buf;
