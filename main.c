@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 		while (cmd_toks != NULL)
 		{
 			command[i] = cmd_toks;
-			printf("%s\n", command[i]);
+			printf("Line %d: %s\n",line_count, command[i]);
 			cmd_toks = strtok(NULL, delimit);
 			i++;
 		}
