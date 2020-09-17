@@ -54,7 +54,7 @@ typedef struct globalinfo_s
 extern glbnfo *info;
 
 /* Error Checks and Utils*/
-FILE *file_check(const char *filename);
+void file_check(FILE *fp, const char *filename);
 void cmd_comp(char *cmd[], unsigned int line_num);
 void clean_up(FILE **fp, stack_t **stack, char **buffer);
 /* These are all our functions in basic_funcs*/

@@ -29,12 +29,12 @@ int main(int argc, char **argv)
 	}
 	filename = argv[1];
 	fp = fopen(filename, "r");
-	
+	file_check(fp, filename);
 	info = malloc(sizeof(glbnfo));
 	if (info == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
-		close(*fp);
+		close(fp);
 		exit(EXIT_FAILURE);
 	}
 	info->fp = fp;
