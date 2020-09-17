@@ -46,7 +46,10 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 			        }
 			    }
 			else
+            {
 			    opcodes[i].f(stack, line_num);
+                return;
+            }
 		}
 	}
 	if (opcodes[i].opcode == NULL)
