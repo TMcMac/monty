@@ -1,6 +1,10 @@
 #include "monty.h"
 #include <ctype.h>
 
+glbnfo *info;
+
+void parse(FILE *fp);
+
 /**
  *
  *
@@ -9,23 +13,27 @@
 int main(int argc, char **argv)
 {
 	const char *filename;
-	
+	FILE *fp;
+
 	/* First Check, only run program + file path */
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
-    }
+	}
+	printf("First file check?\n");
 	filename = argv[1];
 	/* Second check, open the file*/
-	info.fp = fopen(filename, "r");
-	if (info.fp == NULL || access(filename, R_OK) == -1)
+	fp = fopen(filename, "r");
+	printf("File pointer opened\n");
+	if (fp == NULL || access(filename, R_OK) == -1)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		return (EXIT_FAILURE);
 	}
-	info.head = NULL;
-	parse(info.fp);
+	printf("made it past file checks\n");
+	/*	info->stack = NULL; */
+	parse(fp);
 
 	fclose(fp);
 	return (0);
@@ -47,6 +55,7 @@ void parse(FILE *fp)
 	char *command[50];
 	char delimit[] = " \t\r\n\v\f";
 
+	printf("In parse\n");
 	/* Get the first line from input */
 	line_size = getline(&line_buf, &line_buf_size, fp);
 	/* enter the loop of parsing and getting lines from fp */
@@ -56,10 +65,11 @@ void parse(FILE *fp)
 		line_count += 1;
 		/* First we tokenize our line from getline */
 		cmd_toks = strtok(line_buf, delimit);
+		printf("%s\n", cmd_toks);
 		/* Next we will take anything not a space and put it in an array of tokens*/
 		while (cmd_toks != NULL)
 		{
-			if (strcmp(cmd_toks, " ") != 0)
+		    if (strcmp(cmd_toks, " ") != 0)
 		    {
 			command[i] = cmd_toks;
 			cmd_toks = strtok(NULL, delimit);
@@ -70,8 +80,7 @@ void parse(FILE *fp)
 		i = 0;
         /* This is where we will need to call a function pointer struct and see what operation we need to do*/
 		/* I think we'll always be sending a head pointer and line number, and getting back the head pointer*/
-		
-		//cmd_comp(command[0], line_count);
+			/*cmd_comp(command[0], line_count);*/
 		/* Get the next line */
 	    line_size = getline(&line_buf, &line_buf_size, fp);
 	}

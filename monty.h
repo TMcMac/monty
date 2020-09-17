@@ -4,21 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/**
- * struct globalinfo_s - a structure of info that will be accessable globally
- * @fp: a file pointer to our open stream
- * @num: for a push operation the num to be pushed
- * @head: the top of our stack
- */
-typedef struct globalinfo_s
-{
-	stack_t *head;
-	FILE *fp;
-	int num;
-} glbnfo;
-
-extern glbnfo *info;
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -49,5 +35,19 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct globalinfo_s - a structure of info that will be accessable globally
+ * @fp: a file pointer to our open stream
+ * @num: for a push operation the num to be pushed
+ */
+typedef struct globalinfo_s
+{
+  stack_t *stack;
+  FILE *fp;
+  int num;
+} glbnfo;
+
+extern glbnfo *info;
 
 #endif
