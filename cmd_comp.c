@@ -10,7 +10,6 @@
 void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 {
 	int i = 0, j = 0;
-    int len;
 
 	instruction_t opcodes[] = {
 		{"pall", _pall}, {"push", _push}, {NULL, NULL}
@@ -18,6 +17,7 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
 		{"mul", _mul}, {"nop", _nop}, {"mod", _mod},
 		{"swap", _swap}, */
+
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcodes[i].opcode, cmd[0]) == 0)
@@ -37,7 +37,7 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
                     }
                 } 
                 info->num = atoi(cmd[1]);
-                _push(&stack, line_num);
+                _push(stack, line_num);
             }
 		}
 	}

@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	if (info == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		close(fp);
+		fclose(fp);
 		exit(EXIT_FAILURE);
 	}
 	info->fp = &fp;
