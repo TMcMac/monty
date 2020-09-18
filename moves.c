@@ -9,6 +9,7 @@
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover;
+
 	if (stack == NULL || (*stack) == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
@@ -41,9 +42,8 @@ void _swap(stack_t **stack, unsigned int line_number)
 		clean_up(info->fp, stack, info->buffer);
 		exit(EXIT_FAILURE);
 	}
-    tmp = (*stack)->n;
-    prev = (*stack)->prev;
+	tmp = (*stack)->n;
+	prev = (*stack)->prev;
 	(*stack)->n = prev->n;
 	prev->n = tmp;
-	return;
 }
