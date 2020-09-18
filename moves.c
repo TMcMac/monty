@@ -9,8 +9,12 @@
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover;
-	(void) line_number;
-
+	if (stack == NULL || (*stack) == NULL)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
 	if ((*stack)->prev == NULL)
 		free((*stack));
 	else
@@ -28,11 +32,18 @@ void _pop(stack_t **stack, unsigned int line_number)
  */
 void _swap(stack_t **stack, unsigned int line_number)
 {
-	int tmp = (*stack)->n;
-	stack_t *prev = (*stack)->prev;
-	(void) line_number;
+	int tmp;
+	stack_t *prev;
 
+	if (stack == NULL || (*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+    tmp = (*stack)->n;
+    prev = (*stack)->prev;
 	(*stack)->n = prev->n;
 	prev->n = tmp;
-
+	return;
 }
