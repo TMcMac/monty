@@ -39,7 +39,33 @@ void _pall(stack_t **stack, unsigned int line_number)
     }
     return;
 }
-/*
-void _pint(stack_t **stack, unsigned int line_number);
-void _nop(stack_t **stack, unsigned int line_number);
-*/
+
+/**
+ * _pint - a fuction to print the top node's n value
+ * @stack: a pointer to the top of our stack
+ * @line_number: our line number for this command
+ */
+void _pint(stack_t **stack, unsigned int line_number)
+{
+
+  if (stack == NULL || (*stack) == NULL)
+    {
+       fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+       clean_up(info->fp, stack, info->buffer);
+       exit(EXIT_FAILURE);
+    }
+  else
+      printf("%d\n", (*stack)->n);
+}
+
+/**
+ * _nop - opcode function that does nothing
+ * @stack: top pointer of stack
+ * @line_number: line count from given file
+ */
+
+void _nop(stack_t **stack, unsigned int line_number)
+{
+  (void) **stack;
+  (void) line_number;
+}
