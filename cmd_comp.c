@@ -11,7 +11,6 @@
 void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 {
 	int i = 0;
-	char command1[] = cmd[0];
 	instruction_t opcodes[] = {
 		{"pall", _pall}, {"push", _push}, {"pint", _pint},
 		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
