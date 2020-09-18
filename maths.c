@@ -8,10 +8,17 @@
 
 void _add(stack_t **stack, unsigned int line_number)
 {
-    stack_t *mover = (*stack)->prev;
+	stack_t *mover;
 	int result = 0;
-    (void) line_number;
 
+	if ((*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr,"L%u: can't add, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+
+	mover = (*stack)->prev;
 	result = ((*stack)->n + mover->n);
 	mover->n = result;
 	_pop(stack, line_number);
@@ -25,10 +32,15 @@ void _add(stack_t **stack, unsigned int line_number)
 
 void _sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *mover = (*stack)->prev;
+	stack_t *mover;
 	int result = 0;
-	(void) line_number;
-
+	if ((*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr,"L%u: can't add, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+	mover = (*stack)->prev;
 	result = ((*stack)->n - mover->n);
 	mover->n = result;
 	_pop(stack, line_number);
@@ -42,10 +54,15 @@ void _sub(stack_t **stack, unsigned int line_number)
 
 void _div(stack_t **stack, unsigned int line_number)
 {
-	stack_t *mover = (*stack)->prev;
+	stack_t *mover;
 	int result = 0;
-	(void) line_number;
-
+	if ((*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr,"L%u: can't add, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+	mover = (*stack)->prev;
 	result = (mover->n / (*stack)->n);
 	mover->n = result;
 	_pop(stack, line_number);
@@ -59,10 +76,15 @@ void _div(stack_t **stack, unsigned int line_number)
 
 void _mul(stack_t **stack, unsigned int line_number)
 {
-	stack_t *mover = (*stack)->prev;
+	stack_t *mover;
 	int result = 0;
-	(void) line_number;
-
+	if ((*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr,"L%u: can't add, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+	mover = (*stack)->prev;
 	result = ((*stack)->n * mover->n);
 	mover->n = result;
 	_pop(stack, line_number);
@@ -76,10 +98,15 @@ void _mul(stack_t **stack, unsigned int line_number)
 
 void _mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *mover = (*stack)->prev;
+	stack_t *mover;
 	int result = 0;
-	(void) line_number;
-
+	if ((*stack) == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr,"L%u: can't add, stack too short\n", line_number);
+		clean_up(info->fp, stack, info->buffer);
+		exit(EXIT_FAILURE);
+	}
+	mover = (*stack)->prev;
 	result = (mover->n % (*stack)->n);
 	mover->n = result;
 	_pop(stack, line_number);
