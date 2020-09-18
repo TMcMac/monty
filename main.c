@@ -1,7 +1,7 @@
 #include "monty.h"
 #include <ctype.h>
 
-
+glbnfo *info = NULL;
 
 /**
  * main - our main function
@@ -11,7 +11,6 @@
  */
 int main(int argc, char **argv)
 {
-	glbnfo *info = NULL;
 	stack_t *stack = NULL;
 	char *line_buf = NULL;
 	size_t line_buf_size = 0;
