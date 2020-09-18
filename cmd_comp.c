@@ -18,6 +18,11 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 		{"swap", _swap}, {NULL, NULL}
 	};
 
+	if (strcmp(cmd[0][0], '#') == 0)
+	{
+		opcodes[8].f(stack, line_num);
+		return;
+	}
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcodes[i].opcode, cmd[0]) == 0)
