@@ -29,7 +29,8 @@ void clean_up(FILE **fp, stack_t **stack, char **buffer)
     while (*stack != NULL)
     {
         mover = (*stack);
-	    (*stack) = (*stack)->prev;
+	(*stack) = (*stack)->prev;
         free(mover);
-	}
+    }
+    free(info);
 }

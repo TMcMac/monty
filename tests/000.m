@@ -1,7 +1,7 @@
 push 0
 push 1
 push 2
-  push 3
+puts
                    pall    
 push 4
     push 5    
