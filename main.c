@@ -1,15 +1,17 @@
 #include "monty.h"
 #include <ctype.h>
 
-glbnfo *info = NULL;
+
 
 /**
- *
- *
- *
+ * main - our main function
+ * @argc: a count of the number of args
+ * @argv: an array of char pointers to arguments
+ * Return: 0 for success
  */
 int main(int argc, char **argv)
 {
+	glbnfo *info = NULL;
 	stack_t *stack = NULL;
 	char *line_buf = NULL;
 	size_t line_buf_size = 0;
@@ -42,11 +44,8 @@ int main(int argc, char **argv)
 	line_size = getline(&line_buf, &line_buf_size, fp);
 	while (line_size >= 0)
 	{
-		/* Incremeant our line count */
 		line_count += 1;
-		/* First we tokenize our line from getline */
 		cmd_toks = strtok(line_buf, delimit);
-		/* Next we will take anything not a space and put it in an array of tokens*/
 		while (cmd_toks != NULL)
 		{
 			command[i] = cmd_toks;
