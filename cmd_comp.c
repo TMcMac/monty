@@ -24,18 +24,17 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 		{
 			if (strcmp(opcodes[i].opcode, "push") == 0)
 			    {
-			        /* I am going to need to check for spaces and fail conditions down the line */
+			        if (cmd[1] == NULL || isdigit(cmd[1][0]) == 0)
+				    {
+                        fprintf(stderr, "L%u: usage: push integer\n", line_num);
+				        clean_up(info->fp, stack, info->buffer);
+				        exit(EXIT_FAILURE);
+                    }
 			        if (isdigit(cmd[1][0]) != 0)
 			        {
 				        info->num = atoi(cmd[1]);
 				        opcodes[i].f(stack, line_num);
 				        return;
-			        }
-			        else
-			        {
-				        fprintf(stderr, "L%u: usage: push integer\n", line_num);
-				        clean_up(info->fp, stack, info->buffer);
-				        exit(EXIT_FAILURE);
 			        }
 			    }
 			else
