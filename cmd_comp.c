@@ -4,13 +4,13 @@
  * cmd_comp - compare arg to avaiable op codes
  * @line_num: line_number counter
  * @cmd: parsed getline for opcode and args
+ * @stack: a double pointer to the top of the stack
  * Return: Nothing
  */
 
 void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 {
 	int i = 0;
-
 	instruction_t opcodes[] = {
 		{"pall", _pall}, {"push", _push}, {"pint", _pint},
 		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
