@@ -26,14 +26,10 @@ void clean_up(FILE **fp, stack_t **stack, char **buffer)
       fclose((*fp));
     if (*buffer != NULL)
         free(*buffer);
-    if (*stack != NULL)
+    while (*stack != NULL)
     {
-        mover = *stack;
-        while (*stack != NULL)
-        {
-	  (*stack) = (*stack)->prev;
-          free(mover);
-          mover = *stack;
+        mover = (*stack);
+	    (*stack) = (*stack)->prev;
+        free(mover);
 	}
-    }
 }
