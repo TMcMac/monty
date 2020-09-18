@@ -12,11 +12,11 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 	int i = 0;
 
 	instruction_t opcodes[] = {
-		{"pall", _pall}, {"push", _push}, {NULL, NULL}
-	};  /* To be added {"pint", _pint},
+		{"pall", _pall}, {"push", _push}, {"pint", _pint},
 		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
 		{"mul", _mul}, {"nop", _nop}, {"mod", _mod},
-		{"swap", _swap}, */
+		{"swap", _swap}, {NULL, NULL}
+	};
 
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
