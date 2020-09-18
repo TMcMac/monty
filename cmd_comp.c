@@ -11,6 +11,7 @@
 void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 {
 	int i = 0;
+	char command1[] = cmd[0];
 	instruction_t opcodes[] = {
 		{"pall", _pall}, {"push", _push}, {"pint", _pint},
 		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
@@ -18,7 +19,7 @@ void cmd_comp(char *cmd[], stack_t **stack, unsigned int line_num)
 		{"swap", _swap}, {NULL, NULL}
 	};
 
-	if (strcmp(cmd[0][0], '#') == 0)
+	if (strcmp(command1[0], '#') == 0)
 	{
 		opcodes[8].f(stack, line_num);
 		return;
