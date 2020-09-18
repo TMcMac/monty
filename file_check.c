@@ -23,17 +23,17 @@ void file_check(FILE *fp, const char *filename)
  **/
 void clean_up(FILE **fp, stack_t **stack, char **buffer)
 {
-    stack_t *mover;
+	stack_t *mover;
 
-    if ((*fp) != NULL)
-        fclose((*fp));
-    if (*buffer != NULL)
-        free(*buffer);
-    while (*stack != NULL)
-    {
-        mover = (*stack);
-	    (*stack) = (*stack)->prev;
-        free(mover);
-    }
-    free(info);
+	if ((*fp) != NULL)
+		fclose((*fp));
+	if (*buffer != NULL)
+		free(*buffer);
+	while (*stack != NULL)
+	{
+		mover = (*stack);
+		(*stack) = (*stack)->prev;
+		free(mover);
+	}
+	free(info);
 }
